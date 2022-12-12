@@ -3,17 +3,11 @@ import { Photo } from '.';
 
 export interface ImageProps {
   photo: Photo;
-  top: number;
-  left: number;
 }
 
-const Image = ({ top, left, photo }: ImageProps): JSX.Element => {
-  return (
-    <img
-      {...photo}
-      style={{ display: 'block', position: 'absolute', left, top }}
-    />
-  );
+const Image = ({ photo }: ImageProps): JSX.Element => {
+  console.log(photo);
+  return <img {...photo} style={{ width: '100%' }} />;
 };
 
 export default Image;

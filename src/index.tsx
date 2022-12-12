@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { ReactNode, useCallback, useState } from 'react';
 import Image from './Image';
 import {
   computeColumnLayout,
@@ -26,6 +26,10 @@ export interface GalleryProps {
   spacing?: Spacing | SpacingProvider;
   /** For SSR env */
   initialContainerWidth?: number;
+  /** customize photo renderer */
+  renderPhoto?: (photo: Photo) => ReactNode;
+  footerHeight?: number;
+  renderFooter?: (photo: Photo) => ReactNode;
 }
 
 const Gallery = ({
@@ -33,6 +37,9 @@ const Gallery = ({
   columns,
   spacing,
   initialContainerWidth,
+  footerHeight,
+  renderPhoto,
+  renderFooter,
 }: GalleryProps): JSX.Element => {
   const [containerWidth, setContainerWidth] = useState(
     initialContainerWidth || 0
@@ -79,7 +86,8 @@ const Gallery = ({
     photos,
     columns,
     containerWidth,
-    spacing
+    spacing,
+    footerHeight || 0
   );
 
   return (
@@ -92,7 +100,19 @@ const Gallery = ({
         }}
       >
         {photosPositioned.map(p => (
-          <Image key={p.key} photo={p} left={p.left} top={p.top} />
+          <div
+            key={p.key}
+            className="photo-wrapper"
+            style={{
+              position: 'absolute',
+              left: p.left,
+              top: p.top,
+              width: p.width,
+              height: p.height,
+            }}
+          >
+            {renderPhoto ? renderPhoto(p) : <Image photo={p} />}
+          </div>
         ))}
       </div>
     </div>

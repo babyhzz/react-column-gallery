@@ -4,6 +4,6 @@ import { getPhotos } from './data';
 
 const photos = getPhotos(40);
 
-export default function StaticGallery() {
-  return <Gallery photos={photos} spacing={30} />;
+export default function SimpleGallery() {
+  return <Gallery photos={photos} spacing={16} />;
 }

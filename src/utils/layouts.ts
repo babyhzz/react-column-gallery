@@ -14,7 +14,8 @@ export const computeColumnLayout = (
   photos: Photo[],
   columns: number,
   containerWidth: number,
-  spacing: Spacing
+  spacing: Spacing,
+  footerHeight: number
 ): { photosPositioned: PhotoPositioned[]; containerHeight: number } => {
   let horizontalGap = 0;
   let verticalGap = 0;
