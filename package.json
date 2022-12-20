@@ -1,12 +1,13 @@
 {
   "name": "react-column-gallery",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "An React Column Gallery in react.",
   "source": "src/index.tsx",
   "main": "dist/index.js",
   "unpkg": "dist/index.umd.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
+  "files": ["dist"],
   "scripts": {
     "build": "rimraf dist && rollup -c",
     "prepublish": "yarn build",
@@ -25,11 +26,10 @@
   },
   "keywords": [
     "react",
-    "infinite-scroll",
-    "infinite",
-    "scroll",
-    "component",
-    "react-component"
+    "gallery",
+    "column-gallery",
+    "masonry-gallery",
+    "image-gallery"
   ],
   "author": "hc <383686357@qq.com>",
   "license": "MIT",
