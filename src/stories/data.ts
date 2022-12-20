@@ -34,3 +34,13 @@ export const getPhotos = (count: number): Photo[] => {
 
   return photos;
 };
+
+export const getAvatars = (count: number) => {
+  const urls: string[] = []
+
+  for (let i = 0; i < count; i++) {
+    urls.push(`https://picsum.photos/24/24?id=${i}`)
+  }
+
+  return urls;
+}

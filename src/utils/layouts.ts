@@ -3,6 +3,8 @@ import { ColumnsProvider, Photo, Spacing, SpacingProvider } from '..';
 type PhotoPositioned = Photo & {
   left: number;
   top: number;
+  /** 当包含footer height时，此高度会加上 */
+  itemHeight: number;
 };
 
 const round = (value: number, decimals?: number): number => {
@@ -32,12 +34,13 @@ export const computeColumnLayout = (
   const colWidth = (containerWidth - horizontalGap * (columns - 1)) / columns;
 
   // map through each photo to assign adjusted height and width based on colWidth
-  const photosWithSizes = photos.map(photo => {
+  const photosWithSize = photos.map(photo => {
     const newHeight = (photo.height / photo.width) * colWidth;
     return {
       ...photo,
       width: round(colWidth, 1),
       height: round(newHeight, 1),
+      itemHeight: round(newHeight + footerHeight, 1),
     };
   });
 
@@ -54,7 +57,7 @@ export const computeColumnLayout = (
   // map through each photo, then reduce thru each "column"
   // find column with the smallest height and assign to photo's 'top'
   // update that column's height with this photo's height
-  const photosPositioned: PhotoPositioned[] = photosWithSizes.map(photo => {
+  const photosPositioned: PhotoPositioned[] = photosWithSize.map(photo => {
     const smallestCol = colCurrTopPositions.reduce((acc, item, i) => {
       acc = item < colCurrTopPositions[acc] ? i : acc;
       return acc;
@@ -64,7 +67,7 @@ export const computeColumnLayout = (
     const left = colLeftPositions[smallestCol];
 
     colCurrTopPositions[smallestCol] =
-      colCurrTopPositions[smallestCol] + photo.height + verticalGap;
+      colCurrTopPositions[smallestCol] + photo.itemHeight + verticalGap;
 
     const tallestCol = colCurrTopPositions.reduce((acc, item, i) => {
       acc = item > colCurrTopPositions[acc] ? i : acc;

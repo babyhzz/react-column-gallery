@@ -1,10 +1,9 @@
-import React, { ReactNode, useCallback, useState } from 'react';
-import Image from './Image';
+import React, { ReactNode, useCallback, useState } from "react";
 import {
   computeColumnLayout,
   defaultColumnsProvider,
   defaultSpacingProvider,
-} from './utils/layouts';
+} from "./utils/layouts";
 
 export type Photo = {
   key: string | number;
@@ -12,7 +11,7 @@ export type Photo = {
   width: number;
   height: number;
   alt: string;
-  loading?: 'lazy' | 'eager';
+  loading?: "lazy" | "eager";
 };
 
 export type ColumnsProvider = (containerWidth: number) => number;
@@ -27,9 +26,9 @@ export interface GalleryProps {
   /** For SSR env */
   initialContainerWidth?: number;
   /** customize photo renderer */
-  renderPhoto?: (photo: Photo) => ReactNode;
+  renderPhoto?: (photo: Photo, index: number) => ReactNode;
   footerHeight?: number;
-  renderFooter?: (photo: Photo) => ReactNode;
+  renderFooter?: (photo: Photo, index: number) => ReactNode;
 }
 
 const Gallery = ({
@@ -45,14 +44,14 @@ const Gallery = ({
     initialContainerWidth || 0
   );
 
-  const measuredRef = useCallback(node => {
+  const measuredRef = useCallback((node: HTMLDivElement) => {
     let animationFrameID: number | null = null;
     let observer: ResizeObserver | null = null;
 
     if (node !== null) {
       setContainerWidth(Math.floor(node.getBoundingClientRect().height));
 
-      observer = new ResizeObserver(entries => {
+      observer = new ResizeObserver((entries) => {
         const newWidth = entries[0].contentRect.width;
         if (containerWidth !== newWidth) {
           animationFrameID = window.requestAnimationFrame(() => {
@@ -73,12 +72,12 @@ const Gallery = ({
 
   columns = columns || defaultColumnsProvider;
 
-  if (typeof columns === 'function') {
+  if (typeof columns === "function") {
     columns = columns(containerWidth);
   }
 
   spacing = spacing || defaultSpacingProvider;
-  if (typeof spacing === 'function') {
+  if (typeof spacing === "function") {
     spacing = spacing(containerWidth);
   }
 
@@ -91,27 +90,41 @@ const Gallery = ({
   );
 
   return (
-    <div className="react-infinite-column-gallery">
+    <div className="react-column-gallery">
       <div
         ref={measuredRef}
         style={{
-          position: 'relative',
+          position: "relative",
           height: containerHeight,
         }}
       >
-        {photosPositioned.map(p => (
+        {photosPositioned.map((p, index) => (
           <div
             key={p.key}
             className="photo-wrapper"
             style={{
-              position: 'absolute',
+              position: "absolute",
               left: p.left,
               top: p.top,
               width: p.width,
               height: p.height,
             }}
           >
-            {renderPhoto ? renderPhoto(p) : <Image photo={p} />}
+            {renderPhoto ? (
+              renderPhoto(p, index)
+            ) : (
+              <div className="photo-card">
+                <img
+                  src={p.src}
+                  alt={p.alt}
+                  loading={p.loading}
+                  width={p.width}
+                  height={p.height}
+                  style={{ verticalAlign: 'bottom'}}
+                />
+                {renderFooter && renderFooter(p, index)}
+              </div>
+            )}
           </div>
         ))}
       </div>
