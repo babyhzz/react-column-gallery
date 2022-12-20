@@ -18,7 +18,7 @@ export default {
       file: pkg.unpkg,
       format: 'iife',
       sourcemap: true,
-      name: 'InfiniteScroll',
+      name: 'ReactColumnGallery',
     },
   ],
   external: [...Object.keys(pkg.peerDependencies || {})],
