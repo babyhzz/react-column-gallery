@@ -1,6 +1,6 @@
 {
   "name": "react-column-gallery",
-  "version": "6.1.0",
+  "version": "0.0.1",
   "description": "An React Column Gallery in react.",
   "source": "src/index.tsx",
   "main": "dist/index.js",
@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ankeetmaini/react-infinite-scroll-component.git"
+    "url": "git+https://github.com/babyhzz/react-column-gallery.git"
   },
   "keywords": [
     "react",
@@ -31,12 +31,12 @@
     "component",
     "react-component"
   ],
-  "author": "hucheng <383686357@qq.com>",
+  "author": "hc <383686357@qq.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ankeetmaini/react-infinite-scroll-component/issues"
+    "url": "https://github.com/babyhzz/react-column-gallery/issues"
   },
-  "homepage": "https://github.com/ankeetmaini/react-infinite-scroll-component#readme",
+  "homepage": "https://github.com/babyhzz/react-column-gallery#readme",
   "peerDependencies": {
     "react": ">=16.8.0"
   },
