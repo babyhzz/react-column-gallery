@@ -28,6 +28,7 @@ export interface GalleryProps {
   initialContainerWidth?: number;
   /** customize photo renderer */
   renderPhoto?: (photo: Photo, index: number) => ReactNode;
+  /** optional: footer height */
   footerHeight?: number;
   renderFooter?: (photo: Photo, index: number) => ReactNode;
 }
