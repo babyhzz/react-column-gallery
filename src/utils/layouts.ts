@@ -94,9 +94,9 @@ export const defaultColumnsProvider: ColumnsProvider = containerWidth => {
 
 export const defaultSpacingProvider: SpacingProvider = containerWidth => {
   if (containerWidth >= 1500) {
-    return 24;
-  } else if (containerWidth >= 900) {
     return 16;
+  } else if (containerWidth >= 900) {
+    return 12;
   } else if (containerWidth > 500) {
     return 8;
   } else {

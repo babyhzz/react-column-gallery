@@ -4,6 +4,7 @@ import {
   defaultColumnsProvider,
   defaultSpacingProvider,
 } from "./utils/layouts";
+import "./index.css";
 
 export type Photo = {
   key: string | number;
