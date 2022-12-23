@@ -23,6 +23,7 @@ export type SpacingProvider = (containerWidth: number) => Spacing;
 export interface GalleryProps {
   photos: Photo[];
   columns?: number | ColumnsProvider;
+  /** vertical or horizontal space provider */
   spacing?: Spacing | SpacingProvider;
   /** For SSR env */
   initialContainerWidth?: number;
