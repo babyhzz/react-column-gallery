@@ -13,7 +13,6 @@
     "prepublish": "yarn build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "codecov": "codecov",
     "lint": "eslint 'src/**/*.{ts,tsx,js,jsx}'",
     "lint:fix": "yarn lint --fix",
     "prettier:check": "prettier --check 'src/**/*'",
