@@ -46,7 +46,6 @@ const Gallery = ({
   );
 
   const measuredRef = useCallback((node: HTMLDivElement) => {
-    let animationFrameID: number | null = null;
     let observer: ResizeObserver | null = null;
 
     if (node !== null) {
@@ -55,20 +54,13 @@ const Gallery = ({
       observer = new ResizeObserver((entries) => {
         const newWidth = entries[0].contentRect.width;
         if (containerWidth !== newWidth) {
-          animationFrameID = window.requestAnimationFrame(() => {
+          window.requestAnimationFrame(() => {
             setContainerWidth(Math.floor(newWidth));
           });
         }
       });
       observer.observe(node);
     }
-
-    return () => {
-      if (observer !== null && animationFrameID !== null) {
-        observer.disconnect();
-        window.cancelAnimationFrame(animationFrameID);
-      }
-    };
   }, []);
 
   columns = columns || defaultColumnsProvider;
