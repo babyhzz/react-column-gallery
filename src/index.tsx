@@ -30,6 +30,7 @@ export interface GalleryProps {
   renderPhoto?: (photo: Photo, index: number) => ReactNode;
   /** optional: footer height */
   footerHeight?: number;
+  /** optional: customize footer renderer */
   renderFooter?: (photo: Photo, index: number) => ReactNode;
 }
 
