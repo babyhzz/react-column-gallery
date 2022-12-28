@@ -35,7 +35,7 @@
   "bugs": {
     "url": "https://github.com/babyhzz/react-column-gallery/issues"
   },
-  "homepage": "https://github.com/babyhzz/react-column-gallery#readme",
+  "homepage": "https://babyhzz.github.io/react-column-gallery/",
   "peerDependencies": {
     "react": ">=16.8.0"
   },
